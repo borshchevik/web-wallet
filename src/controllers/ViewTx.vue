@@ -53,7 +53,7 @@
               :key="vid"
               :class="vtx.address === wallet.info.address ? 'red--text' : ''"
             >
-              &nbsp;QTUM
+              &nbsp;Borsh
             </p>
           </v-flex>
           <v-flex xs1> =&gt; </v-flex>
@@ -90,7 +90,7 @@
               :key="vid"
               :class="vtx.address === wallet.info.address ? 'green--text' : ''"
             >
-              <template v-if="vtx.address"> QTUM </template>
+              <template v-if="vtx.address"> Borsh </template>
             </p>
           </v-flex>
         </v-layout>

@@ -1,5 +1,5 @@
 {
-    "name": "qtum-web-wallet",
+    "name": "borsh-web-wallet",
     "version": "1.0.0",
     "private": true,
     "scripts": {

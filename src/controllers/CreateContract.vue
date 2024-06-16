@@ -18,7 +18,7 @@
           >{{ $t("create_contract.compiler") }}</a
         >
         <v-text-field
-          label="Gas Price (1e-8 QTUM/gas)"
+          label="Gas Price (1e-8 Borsh/gas)"
           v-model.trim="gasPrice"
           required
         ></v-text-field>

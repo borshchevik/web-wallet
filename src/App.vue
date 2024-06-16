@@ -32,8 +32,8 @@
     </v-navigation-drawer>
     <v-toolbar :class="headerClass" app fixed clipped-left>
       <span class="title">
-        <i class="qtum-icon qtum-icon-logo"></i>
-        <span class="text">QTUM</span>
+        <i class="borsh-icon borsh-icon-logo"></i>
+        <span class="text">BORSH</span>
         <span @click="changeView('settings')">
           --{{ $t("common." + network) }}
         </span>
@@ -153,7 +153,7 @@ import webWallet from '@/libs/web-wallet'
 import i18n from '@/libs/i18n'
 import track from '@/libs/track'
 
-import qtumInfo from '@/libs/nodes/qtumInfo'
+import borshInfo from '@/libs/nodes/borshInfo'
 
 const log = createLog({
   maxLogSizeInBytes: 500 * 1024 // 500KB
@@ -317,7 +317,7 @@ export default {
             break
         }
         // 请求高度
-        const res = await qtumInfo.getQtumInfo()
+        const res = await borshInfo.getBorshInfo()
         if (res.height > height) {
           localStorage.setItem(`${network}_delegation_online`, true)
           this.delegationShow = true

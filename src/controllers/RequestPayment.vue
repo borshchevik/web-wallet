@@ -48,7 +48,7 @@ export default {
   methods: {
     drawQrCode() {
       qrcode.toDataURL(
-        `qtum:${this.address}?amount=${this.amount}&message=${this.message}`,
+        `borsh:${this.address}?amount=${this.amount}&message=${this.message}`,
         (err, url) => {
           this.qr = url
         }

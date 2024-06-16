@@ -1,12 +1,12 @@
 import insight from '@/libs/nodes/insight'
-import qtumInfo from '@/libs/nodes/qtumInfo'
+import borshInfo from '@/libs/nodes/borshInfo'
 
 let nodeConfigs = {
     insight,
-    qtumInfo
+    borshInfo
 }
 
-const defaultNodeId = 'qtumInfo'
+const defaultNodeId = 'borshInfo'
 let currentNodeId = defaultNodeId
 
 export default {

@@ -26,7 +26,7 @@
           required
         ></v-text-field>
         <v-text-field
-          label="Gas Price (1e-8 QTUM/gas)"
+          label="Gas Price (1e-8 Borsh/gas)"
           v-model.trim="gasPrice"
           required
         ></v-text-field>

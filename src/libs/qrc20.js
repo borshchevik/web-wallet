@@ -2,7 +2,7 @@ import tokens from '@/libs/token.json'
 import config from '@/libs/config'
 import server from '@/libs/server'
 import abi from 'ethjs-abi'
-import qtum from 'qtumjs-lib'
+import borsh from 'borshjs-lib'
 
 function loadTokenList(network) {
     let tokenList = tokens[network].concat(
@@ -66,7 +66,7 @@ export default {
             .encodeParams(
                 ['address', 'uint256'], [
                     '0x' +
-                    qtum.address.fromBase58Check(address)['hash'].toString('hex'),
+                    borsh.address.fromBase58Check(address)['hash'].toString('hex'),
                     amount * Math.pow(10, token.decimals)
                 ]
             )

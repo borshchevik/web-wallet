@@ -6,7 +6,7 @@
 import webWallet from '@/libs/web-wallet'
 import { nftAbiMap, getNFTContractAddress } from '@/libs/nodes/nftInfo'
 import abi from 'ethjs-abi'
-import qtum from 'qtumjs-lib'
+import borsh from 'borshjs-lib'
 import { ethers } from 'ethers'
 
 class NFTService {
@@ -26,7 +26,7 @@ class NFTService {
      */
     async createNFT(owner, name, url, desc, count, gasPrice, gasLimit, fee) {
         const encodeMethod = nftAbiMap['createNFT']
-        const hexAddress = qtum.address
+        const hexAddress = borsh.address
             .fromBase58Check(owner)
             .hash.toString('hex')
         const encodeData = this.encodeMethod(encodeMethod, [`0x${hexAddress}`, name, url, desc, count])
@@ -41,7 +41,7 @@ class NFTService {
      */
     async getNFTListByOwner(owner, fromIndex, count) {
         const encodeMethod = nftAbiMap['getNFTListByOwner']
-        const hexAddress = qtum.address
+        const hexAddress = borsh.address
             .fromBase58Check(owner)
             .hash.toString('hex')
         const encodeData = this.encodeMethod(encodeMethod, [`0x${hexAddress}`, fromIndex, count])
@@ -61,7 +61,7 @@ class NFTService {
 
     async batchNFTInfoByIds(owner, ids) {
         const encodeMethod = nftAbiMap['batchNFTInfoByIds']
-        const hexAddress = qtum.address
+        const hexAddress = borsh.address
             .fromBase58Check(owner)
             .hash.toString('hex')
         const encodeData = this.encodeMethod(encodeMethod, [`0x${hexAddress}`, ids])
@@ -79,10 +79,10 @@ class NFTService {
      */
     async safeTransferFrom(from, to, tokenId, count) {
         const encodeMethod = nftAbiMap['safeTransferFrom']
-        const fromHexAddress = qtum.address
+        const fromHexAddress = borsh.address
             .fromBase58Check(from)
             .hash.toString('hex')
-        const toHexAddress = qtum.address
+        const toHexAddress = borsh.address
             .fromBase58Check(to)
             .hash.toString('hex')
         const encodeData = this.encodeMethod(encodeMethod, [`0x${fromHexAddress}`, `0x${toHexAddress}`, tokenId, count])
