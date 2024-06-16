@@ -1,2 +1,2 @@
-# qtum-web-wallet
-A web wallet for QTUM.
+# borsh-web-wallet
+A web wallet for Borshchevik ntw.
