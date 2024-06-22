@@ -40,7 +40,7 @@
         </template>
         <template slot="footer">
           <td colspan="100%">
-            <v-btn color="info" dark @click="addCusPath">{{
+            <v-btn color="info" light @click="addCusPath">{{
               $t("derive_path.add_custom")
             }}</v-btn>
           </td>
@@ -74,11 +74,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="blue--text darken-1" flat @click="savePathForm">{{
+            <v-btn class="blue--text lighten-1" flat @click="savePathForm">{{
               $t("common.confirm")
             }}</v-btn>
             <v-btn
-              class="red--text darken-1"
+              class="red--text lighten-1"
               flat
               @click.native="showPathForm = false"
               >{{ $t("common.cancel") }}</v-btn
@@ -127,17 +127,17 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              class="green--text darken-1"
+              class="green--text lighten-1"
               v-if="addressListPos > 0"
               flat
               @click="prev10Address"
               >{{ $t("derive_path.prev_10") }}</v-btn
             >
-            <v-btn class="green--text darken-1" flat @click="next10Address">{{
+            <v-btn class="green--text lighten-1" flat @click="next10Address">{{
               $t("derive_path.next_10")
             }}</v-btn>
             <v-btn
-              class="red--text darken-1"
+              class="red--text lighten-1"
               flat
               @click.native="showAddressList = false"
               >{{ $t("common.cancel") }}</v-btn

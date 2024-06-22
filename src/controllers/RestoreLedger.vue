@@ -18,7 +18,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="error" dark @click="connect" v-if="step === 1">{{
+      <v-btn color="error" light @click="connect" v-if="step === 1">{{
         $t("restore_ledger.connect")
       }}</v-btn>
     </v-card-actions>

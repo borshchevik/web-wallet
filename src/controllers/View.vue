@@ -68,7 +68,7 @@
           <v-card
             flat
             tile
-            :color="'grey darken-' + ((i % 2) + 1)"
+            :color="'grey lighten-' + ((i % 2) + 1)"
             style="border-bottom: 2px solid #000; padding: 15px 10px"
             v-for="(token, i) in wallet.info.qrc20"
             :key="i"
@@ -139,7 +139,7 @@ export default {
   &-line {
     display: flex;
     align-items: center;
-    .theme--dark.v-icon {
+    .theme--light.v-icon {
       color: hsla(0,0%,100%,.7);
     }
 

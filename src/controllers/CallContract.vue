@@ -42,7 +42,7 @@
     <!-- 合约确认按钮 -->
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="success" dark @click="callTo" :disabled="notValid">{{
+      <v-btn class="success" light @click="callTo" :disabled="notValid">{{
         $t("common.confirm")
       }}</v-btn>
     </v-card-actions>
@@ -70,7 +70,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            class="blue--text darken-1"
+            class="blue--text lighten-1"
             flat
             @click.native="execResultDialog = false"
             >{{ $t("common.confirm") }}</v-btn

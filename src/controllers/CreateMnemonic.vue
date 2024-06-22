@@ -18,10 +18,10 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="error" dark @click="createWallet" v-if="step === 1">{{
+      <v-btn color="error" light @click="createWallet" v-if="step === 1">{{
         $t("create_mnemonic.title")
       }}</v-btn>
-      <v-btn color="info" dark @click="checkWallet" v-if="step === 3">{{
+      <v-btn color="info" light @click="checkWallet" v-if="step === 3">{{
         $t("create_mnemonic.remembered")
       }}</v-btn>
     </v-card-actions>

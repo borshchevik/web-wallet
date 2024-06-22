@@ -48,7 +48,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="success" dark @click="send" :disabled="notValid">{{
+      <v-btn class="success" light @click="send" :disabled="notValid">{{
         $t("common.confirm")
       }}</v-btn>
     </v-card-actions>
@@ -76,14 +76,14 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            class="blue--text darken-1"
+            class="blue--text lighten-1"
             flat
             @click="confirmSend"
             v-show="canSend && !sending"
             >{{ $t("common.confirm") }}</v-btn
           >
           <v-btn
-            class="red--text darken-1"
+            class="red--text lighten-1"
             flat
             @click.native="confirmSendDialog = false"
             :v-show="!sending"

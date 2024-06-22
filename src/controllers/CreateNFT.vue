@@ -60,7 +60,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="success" dark @click="handleSend" :disabled="notValid">{{
+      <v-btn class="success" light @click="handleSend" :disabled="notValid">{{
         $t("common.confirm")
       }}</v-btn>
     </v-card-actions>

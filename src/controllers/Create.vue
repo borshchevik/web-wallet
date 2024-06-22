@@ -22,7 +22,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="error" dark @click="createWallet" v-if="step === 1">{{
+      <v-btn color="error" light @click="createWallet" v-if="step === 1">{{
         $t("create.title")
       }}</v-btn>
     </v-card-actions>

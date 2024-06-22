@@ -12,7 +12,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" flat @click.native="close">{{
+          <v-btn color="green lighten-1" flat @click.native="close">{{
             $t("common.confirm")
           }}</v-btn>
         </v-card-actions>

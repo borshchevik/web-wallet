@@ -1,10 +1,10 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <v-navigation-drawer permanent clipped app>
       <v-list>
         <template v-for="(item, i) in menu">
           <v-divider
-            dark
+            light
             v-if="item.divider"
             class="my-4"
             :key="i"
@@ -14,7 +14,7 @@
             :key="i"
             v-else
             @click="changeView(item.name)"
-            active-class="grey darken-4"
+            active-class="grey lighten-4"
             v-model="isCurrent[item.name]"
             v-show="!notShow[item.name]"
           >

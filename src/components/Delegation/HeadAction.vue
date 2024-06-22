@@ -84,11 +84,11 @@
         <!-- 表单提交部分 -->
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn class="blue--text darken-1" flat @click="confirmSend">{{
+          <v-btn class="blue--text lighten-1" flat @click="confirmSend">{{
             $t("common.confirm")
           }}</v-btn>
           <v-btn
-            class="red--text darken-1"
+            class="red--text lighten-1"
             flat
             @click.native="addDelegationDialog = false"
           >

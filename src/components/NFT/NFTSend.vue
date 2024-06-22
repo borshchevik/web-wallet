@@ -50,10 +50,10 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="handleClose()">{{
+          <v-btn color="blue lighten-1" flat @click="handleClose()">{{
             $t("nft.close_confirm")
           }}</v-btn>
-          <v-btn color="blue darken-1" flat @click="handleConfirmSend()">{{
+          <v-btn color="blue lighten-1" flat @click="handleConfirmSend()">{{
             $t("nft.send_confirm")
           }}</v-btn>
         </v-card-actions>
