@@ -1,9 +1,9 @@
-import qtumJsLib from 'qtumjs-lib'
+import borshJsLib from 'borshjs-lib'
 import btcApp from '@ledgerhq/hw-app-btc'
 import transportU2f from '@ledgerhq/hw-transport-u2f'
 import BigNumber from 'bignumber.js'
 import SafeBuffer from 'safe-buffer'
-import OPS from 'qtum-opcodes'
+import OPS from 'borsh-opcodes'
 
 const Buffer = SafeBuffer.Buffer
 
@@ -35,7 +35,7 @@ function hex2Buffer(hexString) {
 
 export default class Ledger {
   constructor(app) {
-    this.qtum = app
+    this.borsh = app
   }
 
   static get defaultPath() {
@@ -43,26 +43,26 @@ export default class Ledger {
   }
 
   static async connect() {
-    const qtum = new btcApp(await transportU2f.create())
-    // ensure in Qtum App
-    const pubkeyRes = await qtum.getWalletPublicKey(Ledger.defaultPath)
-    if (pubkeyRes.bitcoinAddress[0] !== 'Q') {
-      throw 'Not Qtum App'
+    const borsh = new btcApp(await transportU2f.create())
+    // ensure in borsh App
+    const pubkeyRes = await borsh.getWalletPublicKey(Ledger.defaultPath)
+    if (pubkeyRes.bitcoinAddress[0] !== 'B') {
+      throw 'Not Borsh App'
     }
-    return new Ledger(qtum)
+    return new Ledger(borsh)
   }
 
   static async generateTx(keyPair, ledger, path, from, to, amount, fee, utxoList, rawTxFetchFunc = () => {}) {
     const amountSat = new BigNumber(amount).times(1e8)
     const feeSat = new BigNumber(fee).times(1e8)
-    const pubkeyRes = await ledger.qtum.getWalletPublicKey(path)
+    const pubkeyRes = await ledger.borsh.getWalletPublicKey(path)
     if (pubkeyRes.bitcoinAddress !== from) {
       throw 'Ledger can not restore the source address, please plugin the correct ledger'
     }
     let totalSelectSat = new BigNumber(0)
     const inputs = []
     const paths = []
-    const selectUtxo = qtumJsLib.utils.selectTxs(utxoList, amount, fee)
+    const selectUtxo = borshJsLib.utils.selectTxs(utxoList, amount, fee)
     const rawTxCache = {}
     for(let i = 0; i < selectUtxo.length; i++) {
       const item = selectUtxo[i]
@@ -72,20 +72,20 @@ export default class Ledger {
       paths.push(path)
       totalSelectSat = totalSelectSat.plus(item.value)
       inputs.push([
-        await ledger.qtum.splitTransaction(rawTxCache[item.hash]),
+        await ledger.borsh.splitTransaction(rawTxCache[item.hash]),
         item.pos
       ])
     }
-    const outputs = new qtumJsLib.TransactionBuilder(keyPair.network)
+    const outputs = new borshJsLib.TransactionBuilder(keyPair.network)
     outputs.addOutput(to, amountSat.toNumber())
     const changeSat = totalSelectSat.minus(amountSat).minus(feeSat)
     outputs.addOutput(from, changeSat.toNumber())
     const outputsScript = outputs.buildIncomplete().toHex().slice(10, -8)
-    return await ledger.qtum.createPaymentTransactionNew(inputs, paths, undefined, outputsScript)
+    return await ledger.borsh.createPaymentTransactionNew(inputs, paths, undefined, outputsScript)
   }
 
   static async generateSendToContractTx(keyPair, ledger, path, from, contractAddress, encodedData, gasLimit, gasPrice, fee, utxoList, rawTxFetchFunc = () => {}) {
-    const pubkeyRes = await ledger.qtum.getWalletPublicKey(path)
+    const pubkeyRes = await ledger.borsh.getWalletPublicKey(path)
     if (pubkeyRes.bitcoinAddress !== from) {
       throw 'Ledger can not restore the source address, please plugin the correct ledger'
     }
@@ -97,7 +97,7 @@ export default class Ledger {
     let totalSelectSat = new BigNumber(0)
     const inputs = []
     const paths = []
-    const selectUtxo = qtumJsLib.utils.selectTxs(utxoList, amount, fee)
+    const selectUtxo = borshJsLib.utils.selectTxs(utxoList, amount, fee)
     const rawTxCache = {}
     for(let i = 0; i < selectUtxo.length; i++) {
       const item = selectUtxo[i]
@@ -107,13 +107,13 @@ export default class Ledger {
       paths.push(path)
       totalSelectSat = totalSelectSat.plus(item.value)
       inputs.push([
-        await ledger.qtum.splitTransaction(rawTxCache[item.hash]),
+        await ledger.borsh.splitTransaction(rawTxCache[item.hash]),
         item.pos
       ])
     }
 
-    const outputs = new qtumJsLib.TransactionBuilder(keyPair.network)
-    const contract =  qtumJsLib.script.compile([
+    const outputs = new borshJsLib.TransactionBuilder(keyPair.network)
+    const contract =  borshJsLib.script.compile([
       OPS.OP_4,
       number2Buffer(gasLimit),
       number2Buffer(gasPrice),
@@ -125,6 +125,6 @@ export default class Ledger {
     const changeSat = totalSelectSat.minus(amountSat).minus(feeSat)
     outputs.addOutput(from, changeSat.toNumber())
     const outputsScript = outputs.buildIncomplete().toHex().slice(10, -8)
-    return await ledger.qtum.createPaymentTransactionNew(inputs, paths, undefined, outputsScript)
+    return await ledger.borsh.createPaymentTransactionNew(inputs, paths, undefined, outputsScript)
   }
 }

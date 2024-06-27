@@ -1,5 +1,5 @@
 {
-    "name": "qtum-web-wallet",
+    "name": "borsh-web-wallet",
     "version": "1.0.0",
     "private": true,
     "scripts": {
@@ -23,8 +23,8 @@
         "localstorage-logger": "^0.1.1",
         "npm": "^7.15.1",
         "qrcode": "^0.9.0",
-        "qtum-opcodes": "^1.0.0",
-        "qtumjs-lib": "^0.0.8",
+        "borsh-opcodes": "^1.0.0",
+        "borshjs-lib": "^0.0.9",
         "secp256k1": "^3.8.0",
         "store": "^2.0.12",
         "vue": "^2.6.11",

@@ -67,7 +67,7 @@
                   v-model="info.gasPrice"
                   type="number"
                   min="0"
-                  suffix="e-8 Qtum/gas"
+                  suffix="e-8 Borsh/gas"
                 />
               </v-flex>
               <v-flex xs8 offset-xs2>
@@ -102,7 +102,7 @@
 
 <script>
 import abi from 'ethjs-abi'
-import qtum from 'qtumjs-lib'
+import borsh from 'borshjs-lib'
 import server from '@/libs/server'
 
 export default {
@@ -153,7 +153,7 @@ export default {
       if (!this.formValidate) return
 
       // 将地址转换为 hex
-      const hexAddress = qtum.address
+      const hexAddress = borsh.address
         .fromBase58Check(this.info.stakerAddress)
         .hash.toString('hex')
 

@@ -35,12 +35,12 @@
           </v-flex>
         </v-layout>
         <v-text-field
-          v-if="symbol !== 'QTUM'"
-          label="Gas Price (1e-8 QTUM/gas)"
+          v-if="symbol !== 'BORSH'"
+          label="Gas Price (1e-8 BORSH/gas)"
           v-model="gasPrice"
         ></v-text-field>
         <v-text-field
-          v-if="symbol !== 'QTUM'"
+          v-if="symbol !== 'BORSH'"
           label="Gas Limit"
           v-model="gasLimit"
         ></v-text-field>
@@ -221,7 +221,7 @@ export default {
     return {
       address: '',
       amount: '',
-      symbol: 'QTUM',
+      symbol: 'BORSH',
       tokens: [],
       addTokenStep: 1,
       addTokenDialog: false,
@@ -264,7 +264,7 @@ export default {
       this.confirmSendDialog = true
       const wallet = webWallet.getWallet()
       try {
-        if (this.symbol == 'QTUM') {
+        if (this.symbol == 'BORSH') {
           if (wallet.extend.ledger) {
             this.rawTx = 'Please confirm tx on your ledger...'
           }
@@ -389,7 +389,7 @@ export default {
     },
 
     initTokens() {
-      const tokenList = [{ text: 'QTUM', value: 'QTUM' }]
+      const tokenList = [{ text: 'BORSH', value: 'BORSH' }]
       qrc20.getTokenList().forEach(token => {
         tokenList[tokenList.length] = {
           text: token.symbol,

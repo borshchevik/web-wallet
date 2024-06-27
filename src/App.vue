@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <v-navigation-drawer permanent clipped app>
       <v-list>
         <template v-for="(item, i) in menu">
@@ -14,7 +14,7 @@
             :key="i"
             v-else
             @click="changeView(item.name)"
-            active-class="grey darken-4"
+            active-class="grey darken-2"
             v-model="isCurrent[item.name]"
             v-show="!notShow[item.name]"
           >
@@ -32,14 +32,8 @@
     </v-navigation-drawer>
     <v-toolbar :class="headerClass" app fixed clipped-left>
       <span class="title">
-        <i class="qtum-icon qtum-icon-logo"></i>
-        <span class="text">QTUM</span>
-        <span @click="changeView('settings')">
-          --{{ $t("common." + network) }}
-        </span>
-        <v-btn flat @click="changeView('settings')" v-if="mode !== 'normal'">
-          {{ $t("common.mode." + mode) }}
-        </v-btn>
+        <i class="borsh-icon borsh-icon-logo"></i>
+        <span class="text"> Borsh web wallet</span>
       </span>
     </v-toolbar>
     <main>
@@ -123,7 +117,8 @@
 <script>
 import Vue from 'vue'
 import createLog from 'localstorage-logger'
-
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 //Components
 import Notify from '@/components/Notify'
 import Warning from '@/components/Warning'
@@ -153,7 +148,7 @@ import webWallet from '@/libs/web-wallet'
 import i18n from '@/libs/i18n'
 import track from '@/libs/track'
 
-import qtumInfo from '@/libs/nodes/qtumInfo'
+import borshInfo from '@/libs/nodes/borshInfo'
 
 const log = createLog({
   maxLogSizeInBytes: 500 * 1024 // 500KB
@@ -225,7 +220,7 @@ export default {
       }
     },
     headerClass() {
-      return this.mode === 'normal' ? 'cyan' : 'orange'
+      return this.mode === 'normal' ? 'silver' : 'orange'
     }
   },
   watch: {
@@ -317,7 +312,7 @@ export default {
             break
         }
         // 请求高度
-        const res = await qtumInfo.getQtumInfo()
+        const res = await borshInfo.getBorshInfo()
         if (res.height > height) {
           localStorage.setItem(`${network}_delegation_online`, true)
           this.delegationShow = true

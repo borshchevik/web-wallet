@@ -182,7 +182,7 @@ export default {
     dump_as_key_file: {
         title: 'Dump as a key file',
         password_title: 'Please input a password to encrypt you wallet',
-        warning: 'Please remember this password, if you lose this password, this backup file cannot be decrypted any more'
+        warning: 'Пожалуйста, запомните этот пароль, если вы потеряете его, этот файл резервной копии больше не будет расшифрован'
     },
     config: {
         title: 'Settings',
@@ -193,12 +193,12 @@ export default {
     warning: {
         title: 'Warning',
         list: [
-            'We cannot recover your funds if you visit a phishing site or lose your backup. Please make sure to keep backups of your private keys/seed words.',
-            'We do not store your private keys and/or seed words on this web wallet.',
-            'You as a user, are entirely responsible for your funds and your own security.',
-            'Please make sure to keep an updated antivirus and operating system.',
-            'Please keep your private keys PRIVATE, do not give them to anyone.',
-            'If you use Restore from Mnemonic, the seed words and password must be exactly right or the wallet will create a new address. When using Restore from Mnemonic, confirm you have the correct address.'
+            'Мы не сможем вернуть ваши средства, если вы зайдете на фишинговый сайт или потеряете свою резервную копию. Пожалуйста, сохраняйте резервные копии вашх приватных ключей/сид фраз.',
+            'Мы не храним ваши личные ключи и/или сид фразы в этом веб-кошельке.',
+            'Вы, как пользователь, несете полную ответственность за свои средства и свою собственную безопасность.',
+            'Пожалуйста, убедитесь в том, что у вас обновлены антивирус и операционная система.',
+            'Пожалуйста, храните ваши личные ключи в безопасности, никому их не передавайте.',
+            'Если вы используете восстановление из Мнемоники, сид фраза и пароль должны быть абсолютно правильными, иначе кошелек создаст новый адрес. При использовании восстановления из Мнемоники подтвердите, что у вас правильный адрес.'
         ]
     },
     delegation: {

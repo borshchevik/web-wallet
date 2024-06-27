@@ -1,15 +1,15 @@
 import axios from 'axios'
 import config from '@/libs/config'
-// todo change apis to qtum.info
+
 
 let domain = ''
 
 switch (config.getNetwork()) {
     case 'testnet':
-        domain = 'https://testnet.qtum.info'
+        domain = 'https://testnet.borsh.pw'
         break
     case 'mainnet':
-        domain = 'https://qtum.info'
+        domain = 'https://borsh.pw'
         break
 }
 const apiPrefix = domain + '/api'
@@ -76,7 +76,7 @@ export default {
             .executionResult.output
     },
 
-    async getQtumInfo() {
+    async getBorshInfo() {
         return await _get('/info')
     }
 }

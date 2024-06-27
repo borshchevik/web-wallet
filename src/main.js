@@ -7,7 +7,7 @@ import { Upload } from 'element-ui'
 import App from './App.vue'
 
 import 'vuetify/dist/vuetify.min.css'
-import './assets/less/qtum-icons.less'
+import './assets/less/borsh-icons.less'
 import './assets/css/material-icons.css'
 import './assets/css/main.css'
 

@@ -27,7 +27,7 @@ module.exports = {
                     new FaviconsWebpackPlugin({
                         logo: path.resolve(__dirname, './src/assets/images/logo.png'),
                         favicons: {
-                            appName: 'Qtum Web Wallet'
+                            appName: 'Borsh Web Wallet'
                         }
                     })
                 ]

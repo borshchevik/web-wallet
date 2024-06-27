@@ -1,4 +1,4 @@
-import qtum from 'qtumjs-lib'
+import borsh from 'borshjs-lib'
 import bip39 from 'bip39'
 import abi from 'ethjs-abi'
 import secp256k1 from 'secp256k1'
@@ -9,14 +9,14 @@ import config from '@/libs/config'
 import { sha256d } from '@/libs/hash'
 import { Buffer } from 'buffer'
 
-const unit = 'QTUM'
+const unit = 'BORSH'
 let network = {}
 switch (config.getNetwork()) {
     case 'testnet':
-        network = qtum.networks.qtum_testnet
+        network = borsh.networks.borsh_testnet
         break
     case 'mainnet':
-        network = qtum.networks.qtum
+        network = borsh.networks.borsh
         break
 }
 
@@ -219,10 +219,10 @@ export default class Wallet {
       let reg
       switch (config.getNetwork()) {
         case 'testnet':
-            reg = /^q\w{33}/g
+            reg = /^b\w{33}/g
             return reg.test(address)
         case 'mainnet':
-            reg = /^Q\w{33}/g
+            reg = /^B\w{33}/g
             return reg.test(address)
       }
       return false
@@ -260,7 +260,7 @@ export default class Wallet {
                 .toString(16)
             ]
         )
-        return qtum.utils.buildCreateContractTransaction(
+        return borsh.utils.buildCreateContractTransaction(
             wallet.keyPair,
             qrc20TokenCode + encodedParam.substr(2),
             gasLimit,
@@ -278,7 +278,7 @@ export default class Wallet {
         fee,
         utxoList
     ) {
-        return qtum.utils.buildCreateContractTransaction(
+        return borsh.utils.buildCreateContractTransaction(
             wallet.keyPair,
             code,
             gasLimit,
@@ -314,7 +314,7 @@ export default class Wallet {
                 )
             }
         }
-        return qtum.utils.buildSendToContractTransaction(
+        return borsh.utils.buildSendToContractTransaction(
             wallet.keyPair,
             contractAddress,
             encodedData,
@@ -341,7 +341,7 @@ export default class Wallet {
                 )
             }
         }
-        return qtum.utils.buildPubKeyHashTransaction(
+        return borsh.utils.buildPubKeyHashTransaction(
             wallet.keyPair,
             to,
             amount,
@@ -365,7 +365,7 @@ export default class Wallet {
     static restoreFromMnemonic(mnemonic, password) {
         //if (bip39.validateMnemonic(mnemonic) == false) return false
         const seedHex = bip39.mnemonicToSeedHex(mnemonic, password)
-        const hdNode = qtum.HDNode.fromSeedHex(seedHex, network)
+        const hdNode = borsh.HDNode.fromSeedHex(seedHex, network)
         const account = hdNode
             .deriveHardened(88)
             .deriveHardened(0)
@@ -376,8 +376,8 @@ export default class Wallet {
 
     static restoreFromMobile(mnemonic) {
         const seedHex = bip39.mnemonicToSeedHex(mnemonic)
-        const hdNode = qtum.HDNode.fromSeedHex(seedHex, network)
-        const account = hdNode.deriveHardened(88).deriveHardened(0)
+        const hdNode = borsh.HDNode.fromSeedHex(seedHex, network)
+        const account = hdNode.deriveHardened(1809).deriveHardened(0)
         const walletList = []
         for (let i = 0; i < 10; i++) {
             const wallet = new Wallet(account.deriveHardened(i).keyPair)
@@ -391,16 +391,16 @@ export default class Wallet {
     }
 
     static restoreFromWif(wif) {
-        return new Wallet(qtum.ECPair.fromWIF(wif, network))
+        return new Wallet(borsh.ECPair.fromWIF(wif, network))
     }
 
     static async restoreHdNodeFromLedgerPath(ledger, path) {
-        const res = await ledger.qtum.getWalletPublicKey(path)
-        const compressed = ledger.qtum.compressPublicKey(
+        const res = await ledger.borsh.getWalletPublicKey(path)
+        const compressed = ledger.borsh.compressPublicKey(
             Buffer.from(res['publicKey'], 'hex')
         )
-        const keyPair = new qtum.ECPair.fromPublicKeyBuffer(compressed, network)
-        const hdNode = new qtum.HDNode(
+        const keyPair = new borsh.ECPair.fromPublicKeyBuffer(compressed, network)
+        const hdNode = new borsh.HDNode(
             keyPair,
             Buffer.from(res['chainCode'], 'hex')
         )

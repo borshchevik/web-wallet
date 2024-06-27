@@ -58,7 +58,7 @@
                   v-model="info.gasPrice"
                   type="number"
                   min="0"
-                  suffix="e-8 Qtum/gas"
+                  suffix="e-8 Borsh/gas"
                 />
               </v-flex>
               <v-flex xs8 offset-xs2>
